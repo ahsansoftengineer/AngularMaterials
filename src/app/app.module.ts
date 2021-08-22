@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
-import { MaterialComponentsModule } from './material-components/material-components.module';
+import { MaterialAddressFormModule } from './material-address-form/material-address-form.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { MaterialComponentsModule } from './material-components/material-compone
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    MaterialComponentsModule
+    MaterialAddressFormModule
   ],
   exports:[ MaterialModule ],
   providers: [],

@@ -10,7 +10,12 @@
 3. *ng generate @angular/material:dashboard <component-name>*
 4. *ng generate @angular/material:table <component-name>*
 5. *ng generate @angular/material:tree <component-name>*
-6. *ng generate @angular/material:drag-drop <component-name>*
+6. *ng generate @angular/material:drag-drop <component-name>* **Not Working**
+
 
 ## What is the Command to Generate Lazy Loaded Module?
-> *ng g module navigations --route navigations --module app.module*
+> *ng g m navigations --route navigations --module app.module*
+
+## Current Working Example 
+> ***ng g m navigations --route navigations --module app.module***
+> ***ng g @angular/material:navigation navigations/navigations --flat -d ***

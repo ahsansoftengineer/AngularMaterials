@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MaterialAddressFormRoutingModule } from './material-address-form-routing.module';
-import { AddressFormsComponent } from './address-forms/address-forms.component';
+import { AddressFormsRoutingModule } from './address-forms-routing.module';
+import { AddressFormsComponent } from './address-forms.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
@@ -12,16 +12,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [AddressFormsComponent],
+  declarations: [
+    AddressFormsComponent
+  ],
   imports: [
     CommonModule,
-    MaterialAddressFormRoutingModule,
+    AddressFormsRoutingModule,
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ]
 })
-export class MaterialAddressFormModule { }
+export class AddressFormsModule { }

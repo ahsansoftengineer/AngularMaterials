@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'addressform',
+    path: 'addressforms',
     loadChildren: () =>
-      import('./material-address-form/material-address-form.module').then(
-        (m) => m.MaterialAddressFormModule
+      import('./address-forms/address-forms.module').then(
+        (m) => m.AddressFormsModule
       ),
   },
   {
@@ -16,10 +16,26 @@ const routes: Routes = [
         (m) => m.NavigationsModule
       ),
   },
-  { path: 'tables', loadChildren: () => import('./tables/tables.module').then(m => m.TablesModule) },
-  { path: 'dashboards', loadChildren: () => import('./dashboards/dashboards.module').then(m => m.DashboardsModule) },
-  { path: 'trees', loadChildren: () => import('./trees/trees.module').then(m => m.TreesModule) },
-  { path: 'drag-drops', loadChildren: () => import('./drag-drops/drag-drops.module').then(m => m.DragDropsModule) },
+  {
+    path: 'tables',
+    loadChildren: () =>
+      import('./tables/tables.module').then((m) => m.TablesModule),
+  },
+  {
+    path: 'dashboards',
+    loadChildren: () =>
+      import('./dashboards/dashboards.module').then((m) => m.DashboardsModule),
+  },
+  {
+    path: 'trees',
+    loadChildren: () =>
+      import('./trees/trees.module').then((m) => m.TreesModule),
+  },
+  {
+    path: 'drag-drops',
+    loadChildren: () =>
+      import('./drag-drops/drag-drops.module').then((m) => m.DragDropsModule),
+  },
 ];
 
 @NgModule({

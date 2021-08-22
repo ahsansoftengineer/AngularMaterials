@@ -1,19 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
     path: 'addressform',
     loadChildren: () =>
-      import('./material-address-form/material-address-form.module')
-      .then(m => m.MaterialAddressFormModule)
+      import('./material-address-form/material-address-form.module').then(
+        (m) => m.MaterialAddressFormModule
+      ),
   },
-  {path:'',component:AppComponent}
+  {
+    path: 'navigations',
+    loadChildren: () =>
+      import('./navigations/navigations.module').then(
+        (m) => m.NavigationsModule
+      ),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

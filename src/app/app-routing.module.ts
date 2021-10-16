@@ -36,6 +36,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./drag-drops/drag-drops.module').then((m) => m.DragDropsModule),
   },
+  {
+    path: 'my_example',
+    loadChildren: () =>
+      import('./my-example/my-example.module').then((m) => m.MyExampleModule),
+  },
 ];
 
 @NgModule({

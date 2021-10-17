@@ -109,7 +109,7 @@ export class ChecklistDatabase {
   providers: [ChecklistDatabase],
 })
 export class TreeChecklistComponent {
-  constructor(private _database: ChecklistDatabase) {
+  constructor(public _database: ChecklistDatabase) {
     // Missing 1
     this.treeFlattener = new MatTreeFlattener(
       this.transformer,
@@ -142,7 +142,8 @@ export class TreeChecklistComponent {
   getChildren = (node: TodoItemNode): TodoItemNode[] => node.children;
 
   hasChild = (_: number, _nodeData: TodoItemFlatNode) => _nodeData.expandable;
-
+  /** The selection for checklist */
+  checklistSelection = new SelectionModel<TodoItemFlatNode>(true);
   /** Whether all the descendants of the node are selected. */
   descendantsAllSelected(node: TodoItemFlatNode): boolean {
     const descendants = this.treeControl.getDescendants(node);
@@ -250,10 +251,7 @@ export class TreeChecklistComponent {
 
   treeFlattener: MatTreeFlattener<TodoItemNode, TodoItemFlatNode>;
 
-  /** The selection for checklist */
-  checklistSelection = new SelectionModel<TodoItemFlatNode>(
-    true /* multiple */
-  );
+
   /**
    * Transformer to convert nested node to flat node. Record the nodes in maps for later use.
    */

@@ -56,19 +56,27 @@ export class DynamicDataSource {
         // const nodes = children.map(analysis =>
         //   new AnalysisFlat(analysis.id, analysis.title, analysis.count, analysis.level,  this.database.isExpandable(analysis)));
         // this.data.splice(index + 1, 0, ...nodes);
-        this.data.splice(index + 1, 0, ...children);
         // notify the change
+        children.forEach(node => {
+          node.expandable = node.count > 0
+        } )
+        this.data.splice(index + 1, 0, ...children);
         this.dataChange.next(this.data);
         node.isLoading = false;
       }, 400);
     } else {
-      this.data.splice(index + 1, children.length);
-      console.log(node);
+      let imidiateChildren = 0;
+      console.log(this.data);
 
+      this.data.forEach(subNode => {
+        let continu = true
+        if(subNode.level > node.level && continu)
+          imidiateChildren++
+        else continu = false
+      })
+      this.data.splice(index + 1, imidiateChildren);
       this.dataChange.next(this.data);
     }
   }
-
-
-
 }
+

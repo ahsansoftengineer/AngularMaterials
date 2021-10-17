@@ -76,7 +76,6 @@ export class ChecklistDatabase {
       const value = obj[key];
       const node = new TodoItemNode([]);
       node.item = key;
-
       if (value != null) {
         if (typeof value === 'object') {
           node.children = this.buildFileTree(value, level + 1);
@@ -84,7 +83,6 @@ export class ChecklistDatabase {
           node.item = value;
         }
       }
-
       return accumulator.concat(node);
     }, []);
   }

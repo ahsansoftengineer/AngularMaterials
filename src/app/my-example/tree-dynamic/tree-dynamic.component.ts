@@ -64,22 +64,31 @@ export class TreeDynamicComponent implements OnInit {
   checklistSelection = new SelectionModel<AnalysisFlat>(true);
 
   /** Whether all the descendants of the node are selected. */
-  descendantsAllSelected(node: AnalysisFlat): boolean {
+  descendantsAllSelected(node: AnalysisFlat): number {
     const descendants = this.treeControl.getDescendants(node);
     const descAllSelected =
       descendants.length > 0 &&
       descendants.every((child) => {
         return this.checklistSelection.isSelected(child);
       });
-    return descAllSelected;
+    return +descAllSelected;
   }
   /** Whether part of the descendants are selected */
-  descendantsPartiallySelected(node: AnalysisFlat): boolean {
+  descendantsPartiallySelected(node: AnalysisFlat): number {
     const descendants = this.treeControl.getDescendants(node);
     const result = descendants.some((child) =>
       this.checklistSelection.isSelected(child)
     );
-    return result && !this.descendantsAllSelected(node);
+    console.log('descendantsPartiallySelected');
+    if(result && !this.descendantsAllSelected(node)){
+      node.status = 2
+    } else if(this.descendantsAllSelected(node)){
+      node.status = 1
+    }
+    //  else if(!this.descendantsAllSelected(node)){
+    //   node.status = 0
+    // }
+    return node.status;
   }
   // Only For Parent Toggle Selection
   todoItemSelectionToggle(node: AnalysisFlat): void {
@@ -93,7 +102,7 @@ export class TreeDynamicComponent implements OnInit {
     descendants.forEach((child) => this.checklistSelection.isSelected(child));
     // Un Comment This
     this.checkAllParentsSelection(node);
-    node.isChecked = +this.checklistSelection.isSelected(node)
+    node.status = +this.checklistSelection.isSelected(node)
     console.log(node);
   }
   /** Toggle a leaf to-do item selection. Check all the parents to see if they changed */
@@ -101,7 +110,7 @@ export class TreeDynamicComponent implements OnInit {
     console.log('todoLeafItemSelectionToggle');
     this.checklistSelection.toggle(node);
     this.checkAllParentsSelection(node);
-    node.isChecked = +this.checklistSelection.isSelected(node)
+    node.status = +this.checklistSelection.isSelected(node)
     console.log(node);
   }
 

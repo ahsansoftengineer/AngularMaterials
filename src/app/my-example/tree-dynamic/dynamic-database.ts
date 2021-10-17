@@ -36,7 +36,6 @@ export class DynamicDatabase {
       new AnalysisFlat(402, 'M', 0, 3),
       new AnalysisFlat(403, 'N', 0, 3, false, false, 1),
     ]],
-
   ]);
   // rootLevelNodes = [ 'Simulation', 'Indie', 'Action', 'Strategy','RPG'];
   /** Initial data from database */

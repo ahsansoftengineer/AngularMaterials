@@ -85,9 +85,6 @@ export class TreeDynamicComponent implements OnInit {
     } else if(this.descendantsAllSelected(node)){
       node.status = 1
     }
-    //  else if(!this.descendantsAllSelected(node)){
-    //   node.status = 0
-    // }
     return node.status;
   }
   // Only For Parent Toggle Selection
@@ -98,14 +95,11 @@ export class TreeDynamicComponent implements OnInit {
     this.checklistSelection.isSelected(node)
       ? this.checklistSelection.select(...descendants)
       : this.checklistSelection.deselect(...descendants);
-    // Force update for the parent
     descendants.forEach((child) => this.checklistSelection.isSelected(child));
-    // Un Comment This
     this.checkAllParentsSelection(node);
     node.status = +this.checklistSelection.isSelected(node)
     console.log(node);
   }
-  /** Toggle a leaf to-do item selection. Check all the parents to see if they changed */
   todoLeafItemSelectionToggle(node: AnalysisFlat): void {
     console.log('todoLeafItemSelectionToggle');
     this.checklistSelection.toggle(node);
@@ -113,8 +107,6 @@ export class TreeDynamicComponent implements OnInit {
     node.status = +this.checklistSelection.isSelected(node)
     console.log(node);
   }
-
-  /* Checks all the parents when a leaf node is selected/unselected */
   checkAllParentsSelection(node: AnalysisFlat): void {
     let parent: AnalysisFlat | null = this.getParentNode(node);
     while (parent) {
@@ -122,7 +114,6 @@ export class TreeDynamicComponent implements OnInit {
       parent = this.getParentNode(parent);
     }
   }
-  /** Check root node checked state and change it accordingly */
   checkRootNodeSelection(node: AnalysisFlat): void {
     const nodeSelected = this.checklistSelection.isSelected(node);
     const descendants = this.treeControl.getDescendants(node);
@@ -137,7 +128,6 @@ export class TreeDynamicComponent implements OnInit {
       this.checklistSelection.select(node);
     }
   }
-  /* Get the parent node of a node */
   getParentNode(node: AnalysisFlat): AnalysisFlat | null {
     const currentLevel = this.getLevel(node);
 
@@ -156,49 +146,4 @@ export class TreeDynamicComponent implements OnInit {
     }
     return null;
   }
-  // Changed From Here
-    // Flattener Here
-  // treeFlattener: MatTreeFlattener<Analysis, AnalysisFlat>;
-  /** Map from flat node to nested node. This helps us finding the nested node to be modified */
-  flatNodeMap = new Map<AnalysisFlat, Analysis>();
-  /**
-   * Transformer to convert nested node to flat node. Record the nodes in maps for later use.
-   */
-   transformer = (node: Analysis, level: number) => {
-    const existingNode = this.nestedNodeMap.get(node);
-    const flatNode =
-      existingNode && existingNode.id === node.id
-        ? existingNode
-        : new AnalysisFlat(601, 'Ahsan', 0, 1);
-    flatNode.id = node.id;
-    flatNode.level = level;
-    flatNode.expandable = !!node.children?.length;
-    this.flatNodeMap.set(flatNode, node);
-    this.nestedNodeMap.set(node, flatNode);
-    return flatNode;
-  };
-  /** Map from nested node to flattened node. This helps us to keep the same object for selection */
-  nestedNodeMap = new Map<Analysis, AnalysisFlat>();
-
-  /** A selected parent node to be inserted */
-  selectedParent: AnalysisFlat | null = null;
-
-  /** The new item's name */
-  newItemName = '';
-
-  // hasNoContent = (_: number, _nodeData: AnalysisFlat) =>
-  //   _nodeData.item === '';
-
-  /** Select the category so we can insert the new item. */
-  // addNewItem(node: AnalysisFlat) {
-  //   const parentNode = this.flatNodeMap.get(node);
-  //   this._database.insertItem(parentNode!, '');
-  //   this.treeControl.expand(node);
-  // }
-
-  /** Save the node to database */
-  // saveNode(node: AnalysisFlat, itemValue: string) {
-  //   const nestedNode = this.flatNodeMap.get(node);
-  //   this._database.updateItem(nestedNode!, itemValue);
-  // }
 }

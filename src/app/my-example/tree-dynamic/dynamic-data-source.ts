@@ -31,7 +31,6 @@ export class DynamicDataSource {
     return merge(collectionViewer.viewChange, this.dataChange).pipe(
       map(() => this.data));
   }
-  /** Handle expand/collapse behaviors */
   handleTreeControl(change: SelectionChange<AnalysisFlat>) {
     if (change.added) {
       change.added.forEach((node) => this.toggleNode(node, true));
@@ -40,11 +39,6 @@ export class DynamicDataSource {
       change.removed.reverse().forEach((node) => this.toggleNode(node, false));
     }
   }
-
-  /**
-   * Toggle the node, remove from display list
-   */
-  // Open Closed Node
   toggleNode(node: AnalysisFlat, expand: boolean) {
     const children = this.database.getChildren(node);
     const index = this.data.indexOf(node);

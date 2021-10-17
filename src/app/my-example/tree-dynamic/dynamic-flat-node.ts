@@ -17,7 +17,5 @@ export class AnalysisFlat {
     public expandable: boolean = false,
     public isLoading: boolean = false,
     public status: number = 0,
-
-
     ) {}
 }

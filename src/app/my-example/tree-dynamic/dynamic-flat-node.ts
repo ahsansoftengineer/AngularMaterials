@@ -1,16 +1,23 @@
 /** Flat node with expandable and level information */
-
-export class DynamicItemNode {
+// This is Not in Use
+export class Analysis {
   constructor(
-    public children: DynamicItemNode[],
-    public item: string = '') {
+    public id: number,
+    public title: string = '',
+    public children: Analysis[] = [],
+    ) {
   }
 }
-export class DynamicItemFlatNode {
+export class AnalysisFlat {
   constructor(
-    public item: string,
+    public id: number,
+    public title: string,
+    public count: number,
     public level: number = 1,
     public expandable: boolean = false,
-    public isLoading: boolean = false
+    public isLoading: boolean = false,
+    public isChecked: number = 0,
+
+
     ) {}
 }

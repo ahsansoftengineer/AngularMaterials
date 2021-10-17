@@ -90,17 +90,17 @@ export class ChecklistDatabase {
   }
 
   /** Add an item to to-do list */
-  insertItem(parent: TodoItemNode, name: string) {
-    if (parent.children) {
-      parent.children.push({ item: name } as TodoItemNode);
-      this.dataChange.next(this.data);
-    }
-  }
+  // insertItem(parent: TodoItemNode, name: string) {
+  //   if (parent.children) {
+  //     parent.children.push({ item: name } as TodoItemNode);
+  //     this.dataChange.next(this.data);
+  //   }
+  // }
 
-  updateItem(node: TodoItemNode, name: string) {
-    node.item = name;
-    this.dataChange.next(this.data);
-  }
+  // updateItem(node: TodoItemNode, name: string) {
+  //   node.item = name;
+  //   this.dataChange.next(this.data);
+  // }
 }
 @Component({
   selector: 'tree-checklist',
